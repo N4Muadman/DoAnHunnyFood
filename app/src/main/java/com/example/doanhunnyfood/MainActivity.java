@@ -1,5 +1,6 @@
 package com.example.doanhunnyfood;
 
+import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -19,6 +20,7 @@ import com.example.doanhunnyfood.ui.DinnerTable.OnTableSelectedListener;
 import com.example.doanhunnyfood.ui.Food.FoodFragment;
 import com.example.doanhunnyfood.ui.UnpaidOrderDetailFragment;
 import com.example.doanhunnyfood.ui.gallery.GalleryFragment;
+import com.example.doanhunnyfood.ui.slideshow.UserFragment;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
@@ -138,6 +140,18 @@ public class MainActivity extends AppCompatActivity implements OnTableSelectedLi
             } else if (id == R.id.nav_gallery) {
                 fragment = new GalleryFragment(); // Thay thế bằng Fragment của bạn
                 binding.appBarMain.toolbar.setTitle("Gallery");
+            }
+            else if (id == R.id.nav_qlUser) {
+                fragment = new UserFragment(); // Thay thế bằng Fragment của bạn
+                binding.appBarMain.toolbar.setTitle("Quản lý nhân viên");
+            }
+
+            if(id == R.id.nav_logout){
+                sessionLogin.setLogin(false);
+                sessionLogin.logout();
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(intent);
+                finish();
             }
 
             if (fragment != null) {

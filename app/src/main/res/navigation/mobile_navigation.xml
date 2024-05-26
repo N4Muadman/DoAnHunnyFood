@@ -18,8 +18,12 @@
         tools:layout="@layout/fragment_gallery" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.doanhunnyfood.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_qlUser"
+        android:name="com.example.doanhunnyfood.ui.slideshow.UserFragment"
+        android:label="Quản lý nhân viên"
+        tools:layout="@layout/fragment_user" />
+    <fragment
+        android:id="@+id/nav_logout"
+        android:name="com.example.doanhunnyfood.ui.home.HomeFragment"
+        tools:layout="@layout/fragment_home" />
 </navigation>

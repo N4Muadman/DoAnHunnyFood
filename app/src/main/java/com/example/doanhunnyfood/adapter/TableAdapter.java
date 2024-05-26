@@ -92,7 +92,7 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.TableViewHol
 
             // Kiểm tra và thiết lập hình ảnh và thời gian tương ứng
             if (hasOrder(table.id)) { // Kiểm tra nếu table có order tương ứng
-                imgTable.setImageResource(R.drawable.img_pho);
+                imgTable.setImageResource(R.drawable.ic_table_fales);
                 imgTime.setVisibility(View.VISIBLE);
                 txtTime.setText(getElapsedTime(table.id) + " phút");
             } else {

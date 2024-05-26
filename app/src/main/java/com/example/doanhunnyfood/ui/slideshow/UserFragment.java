@@ -10,22 +10,22 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.doanhunnyfood.databinding.FragmentSlideshowBinding;
+import com.example.doanhunnyfood.databinding.FragmentUserBinding;
 
-public class SlideshowFragment extends Fragment {
+public class UserFragment extends Fragment {
 
-    private FragmentSlideshowBinding binding;
+    private FragmentUserBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        SlideshowViewModel slideshowViewModel =
-                new ViewModelProvider(this).get(SlideshowViewModel.class);
+        UserViewModel userViewModel =
+                new ViewModelProvider(this).get(UserViewModel.class);
 
-        binding = FragmentSlideshowBinding.inflate(inflater, container, false);
+        binding = FragmentUserBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         final TextView textView = binding.textSlideshow;
-        slideshowViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        userViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 

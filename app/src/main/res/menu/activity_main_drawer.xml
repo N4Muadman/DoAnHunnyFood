@@ -13,8 +13,15 @@
             android:icon="@drawable/ic_menu_gallery"
             android:title="@string/menu_gallery" />
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/nav_qlUser"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_slideshow" />
+            android:title="Quản lý nhân viên" />
     </group>
+    <item android:title="Đăng xuất">
+        <menu>
+            <item android:title="Đăng xuất"
+                android:id="@+id/nav_logout"
+                />
+        </menu>
+    </item>
 </menu>

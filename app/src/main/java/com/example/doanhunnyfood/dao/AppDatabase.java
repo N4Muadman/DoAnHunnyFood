@@ -79,21 +79,21 @@ public abstract class AppDatabase extends RoomDatabase {
                 new Food("bun cha", "Fresh spring rolls", 30.0, R.drawable.img_bun_cha, 1),
                 new Food("Coffee", "Vietnamese coffee", 15.0, R.drawable.img_coffee, 1),
                 new Food("Tea", "Vietnamese tea", 10.0, R.drawable.img_tea, 1)
+
         };
         for (Food food : foods) {
             foodDao.insert(food);
         }
     }
     private static void populateInitialUserData(UserDao userDao){
-        String pw = "123456";
-        User user = new User();
-        user.userName = "nam123";
-        user.password = PasswordUtils.hashPassword("123456");
-        user.fullName = "dau van nam";
-        user.email = "namdau@gmail.com";
-        user.address = "viet nam";
-        user.phoneNumber = "09123132";
-        user.status = 1;
-        userDao.insert(user);
+        User[] users = new User[]{
+                new User("nam123", PasswordUtils.hashPassword("123456"), "dau van nam", "nam@gmail.com", "0987654321", "viet nam", 1),
+        };
+
+        for (User user: users) {
+            userDao.insert(user);
+        }
+
+
     }
 }

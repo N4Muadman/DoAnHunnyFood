@@ -28,4 +28,14 @@ public class User {
 
     @ColumnInfo(name = "status")
     public int status;
+
+    public User(String userName, String password, String fullName, String email, String phoneNumber, String address, int status) {
+        this.userName = userName;
+        this.password = password;
+        this.fullName = fullName;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+        this.status = status;
+    }
 }
