@@ -35,8 +35,6 @@ import androidx.lifecycle.LiveData;
 
 import com.google.android.material.tabs.TabLayout;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -137,7 +135,7 @@ public class MainActivity extends AppCompatActivity implements OnTableSelectedLi
             if (id == R.id.nav_home) {
                 fragment = new DinnerTableFragment();
                 binding.appBarMain.toolbar.setTitle("Home");
-            } else if (id == R.id.nav_gallery) {
+            } else if (id == R.id.nav_monan) {
                 fragment = new GalleryFragment(); // Thay thế bằng Fragment của bạn
                 binding.appBarMain.toolbar.setTitle("Gallery");
             }

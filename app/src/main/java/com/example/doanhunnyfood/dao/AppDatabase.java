@@ -87,7 +87,9 @@ public abstract class AppDatabase extends RoomDatabase {
     }
     private static void populateInitialUserData(UserDao userDao){
         User[] users = new User[]{
-                new User("nam123", PasswordUtils.hashPassword("123456"), "dau van nam", "nam@gmail.com", "0987654321", "viet nam", 1),
+                new User("nam123", PasswordUtils.hashPassword("123456"), "dau van nam", "nam@gmail.com", "0987654321", "Dien Chau", 1),
+                new User("vinh123", PasswordUtils.hashPassword("123456"), "Dang Thi Vinh", "vinh123@gmail.com", "034867345", "Dien Chau", 1),
+                new User("suong123", PasswordUtils.hashPassword("123456"), "My Suong", "vinh123@gmail.com", "0368396735", "Nam Dan", 1),
         };
 
         for (User user: users) {
