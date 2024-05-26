@@ -1,13 +1,12 @@
 package com.example.doanhunnyfood.repository;
 
 import android.app.Application;
-import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
 
 import com.example.doanhunnyfood.dao.AppDatabase;
 import com.example.doanhunnyfood.dao.TableDao;
-import com.example.doanhunnyfood.entydi.Table;
+import com.example.doanhunnyfood.entity.Table;
 
 import java.util.List;
 import java.util.concurrent.ExecutorService;

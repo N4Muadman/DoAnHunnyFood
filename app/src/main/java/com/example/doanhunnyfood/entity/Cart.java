@@ -1,4 +1,4 @@
-package com.example.doanhunnyfood.entydi;
+package com.example.doanhunnyfood.entity;
 
 public class Cart {
     private int id, img, qtt;

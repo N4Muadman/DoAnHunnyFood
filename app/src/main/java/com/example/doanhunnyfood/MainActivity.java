@@ -1,6 +1,5 @@
 package com.example.doanhunnyfood;
 
-import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,12 +7,12 @@ import android.view.View;
 import android.view.Menu;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.example.doanhunnyfood.SessionManager.SessionLogin;
 import com.example.doanhunnyfood.databinding.ActivityMainBinding;
-import com.example.doanhunnyfood.entydi.Order;
-import com.example.doanhunnyfood.entydi.OrderView;
-import com.example.doanhunnyfood.entydi.Table;
+import com.example.doanhunnyfood.entity.Order;
+import com.example.doanhunnyfood.entity.OrderView;
+import com.example.doanhunnyfood.entity.Table;
 import com.example.doanhunnyfood.repository.OrderRepository;
 import com.example.doanhunnyfood.ui.DinnerTable.DinnerTableFragment;
 import com.example.doanhunnyfood.ui.DinnerTable.OnTableSelectedListener;
@@ -34,6 +33,8 @@ import androidx.lifecycle.LiveData;
 
 import com.google.android.material.tabs.TabLayout;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,12 +49,17 @@ public class MainActivity extends AppCompatActivity implements OnTableSelectedLi
 
     private List<OrderView> orderViewList = new ArrayList<>();
 
+    private SessionLogin sessionLogin;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        setValueLogin();
 
         orderRepository = new OrderRepository(getApplication());
         orderListData = orderRepository.getAllOrder();
@@ -82,6 +88,7 @@ public class MainActivity extends AppCompatActivity implements OnTableSelectedLi
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
         TabLayout tabLayout = binding.appBarMain.navViewTab;
+
 
 
         // Thêm các tab với custom view
@@ -144,6 +151,23 @@ public class MainActivity extends AppCompatActivity implements OnTableSelectedLi
         });
     }
 
+    private void setValueLogin() {
+        sessionLogin = new SessionLogin(this);
+        String fullname = sessionLogin.getLoggedInFullname();
+        String email = sessionLogin.getLoggedInEmail();
+        NavigationView navigationView = binding.navView;
+        View headerView = navigationView.getHeaderView(0);
+        TextView txtFullName = headerView.findViewById(R.id.txtFullName);
+        TextView txtEmail = headerView.findViewById(R.id.txtEmail);
+
+        if (fullname.isEmpty()  && !fullname.isEmpty()) {
+            txtFullName.setText(fullname);
+            txtEmail.setText(email);
+        } else {
+            // Xử lý trường hợp không có người dùng đã đăng nhập
+        }
+
+    }
 
 
     private View getTabView(int position) {

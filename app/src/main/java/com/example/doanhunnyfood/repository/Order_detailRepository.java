@@ -6,7 +6,7 @@ import androidx.lifecycle.LiveData;
 
 import com.example.doanhunnyfood.dao.AppDatabase;
 import com.example.doanhunnyfood.dao.Order_detailDao;
-import com.example.doanhunnyfood.entydi.Order_detail;
+import com.example.doanhunnyfood.entity.Order_detail;
 
 import java.util.List;
 import java.util.concurrent.ExecutorService;

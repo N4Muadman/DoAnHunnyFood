@@ -10,8 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.doanhunnyfood.R;
-import com.example.doanhunnyfood.entydi.Order;
-import com.example.doanhunnyfood.entydi.Table;
+import com.example.doanhunnyfood.entity.Order;
+import com.example.doanhunnyfood.entity.Table;
 
 import java.util.List;
 

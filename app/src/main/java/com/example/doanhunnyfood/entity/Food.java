@@ -1,4 +1,4 @@
-package com.example.doanhunnyfood.entydi;
+package com.example.doanhunnyfood.entity;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;

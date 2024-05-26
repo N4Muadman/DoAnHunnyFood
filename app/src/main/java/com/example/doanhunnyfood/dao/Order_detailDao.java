@@ -6,7 +6,7 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 
-import com.example.doanhunnyfood.entydi.Order_detail;
+import com.example.doanhunnyfood.entity.Order_detail;
 
 import java.util.List;
 

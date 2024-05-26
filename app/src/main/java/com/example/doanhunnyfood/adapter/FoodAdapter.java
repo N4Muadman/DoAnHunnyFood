@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.doanhunnyfood.R;
-import com.example.doanhunnyfood.entydi.Food;
+import com.example.doanhunnyfood.entity.Food;
 
 import java.util.List;
 

@@ -17,6 +17,12 @@
             android:exported="true"
             android:label="hunny food"
             android:theme="@style/Theme.DoAnHunnyFood.NoActionBar">
+
+        </activity>
+        <activity
+            android:name=".LoginActivity"
+            android:exported="true"
+            android:label="hunny food">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

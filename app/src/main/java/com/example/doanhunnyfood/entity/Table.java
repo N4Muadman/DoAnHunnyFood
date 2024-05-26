@@ -1,4 +1,4 @@
-package com.example.doanhunnyfood.entydi;
+package com.example.doanhunnyfood.entity;
 
 import android.os.Parcel;
 import android.os.Parcelable;

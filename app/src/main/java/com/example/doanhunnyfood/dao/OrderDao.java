@@ -6,8 +6,8 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 
-import com.example.doanhunnyfood.entydi.Order;
-import com.example.doanhunnyfood.entydi.OrderView;
+import com.example.doanhunnyfood.entity.Order;
+import com.example.doanhunnyfood.entity.OrderView;
 
 import java.util.List;
 

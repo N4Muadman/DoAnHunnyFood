@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.doanhunnyfood.R;
-import com.example.doanhunnyfood.entydi.Cart;
+import com.example.doanhunnyfood.entity.Cart;
 
 import java.util.List;
 

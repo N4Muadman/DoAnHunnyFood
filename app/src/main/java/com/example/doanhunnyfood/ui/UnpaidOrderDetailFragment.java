@@ -1,7 +1,5 @@
 package com.example.doanhunnyfood.ui;
 
-import androidx.lifecycle.ViewModelProvider;
-
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.doanhunnyfood.R;
-import com.example.doanhunnyfood.entydi.OrderView;
+import com.example.doanhunnyfood.entity.OrderView;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.example.doanhunnyfood.entydi;
+package com.example.doanhunnyfood.entity;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
@@ -11,18 +11,18 @@ import androidx.room.PrimaryKey;
                         parentColumns = "id",
                         childColumns = "table_id",
                         onDelete = ForeignKey.CASCADE),
-//                @ForeignKey(entity = Employee.class,
-//                        parentColumns = "id",
-//                        childColumns = "employee_id",
-//                        onDelete = ForeignKey.CASCADE)
+                @ForeignKey(entity = User.class,
+                        parentColumns = "id",
+                        childColumns = "user_id",
+                        onDelete = ForeignKey.CASCADE)
         })
 public class Order {
     @PrimaryKey(autoGenerate = true)
     public int id;
     @ColumnInfo(name = "table_id")
     public int table_id;
-    @ColumnInfo(name = "employee_id")
-    public int employee_id;
+    @ColumnInfo(name = "user_id")
+    public int user_id;
     @ColumnInfo(name = "order_time")
     public long order_time;
     @ColumnInfo(name = "total")

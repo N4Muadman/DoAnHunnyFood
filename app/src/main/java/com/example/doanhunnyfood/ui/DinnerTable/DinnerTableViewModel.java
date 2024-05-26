@@ -5,10 +5,9 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.ViewModel;
 
-import com.example.doanhunnyfood.entydi.Order;
-import com.example.doanhunnyfood.entydi.Table;
+import com.example.doanhunnyfood.entity.Order;
+import com.example.doanhunnyfood.entity.Table;
 import com.example.doanhunnyfood.repository.OrderRepository;
 import com.example.doanhunnyfood.repository.TableRepository;
 

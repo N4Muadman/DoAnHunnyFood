@@ -50,4 +50,10 @@ dependencies {
 
     implementation ("androidx.room:room-runtime:2.4.0")
     annotationProcessor ("androidx.room:room-compiler:2.4.0")
+
+    implementation ("io.reactivex.rxjava3:rxjava:3.1.8")
+    implementation ("androidx.room:room-rxjava3:2.4.0")
+
+    implementation ("androidx.security:security-crypto:1.1.0-alpha03")
+
 }

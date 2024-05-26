@@ -1,4 +1,4 @@
-package com.example.doanhunnyfood.entydi;
+package com.example.doanhunnyfood.entity;
 
 public class OrderView {
     private int orderId;

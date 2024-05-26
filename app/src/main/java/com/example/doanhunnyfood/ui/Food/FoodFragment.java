@@ -21,14 +21,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.doanhunnyfood.R;
-import com.example.doanhunnyfood.entydi.Cart;
+import com.example.doanhunnyfood.entity.Cart;
 import com.example.doanhunnyfood.adapter.CartAdapter;
 import com.example.doanhunnyfood.adapter.FoodAdapter;
 import com.example.doanhunnyfood.adapter.ItemClickListener;
-import com.example.doanhunnyfood.entydi.Food;
-import com.example.doanhunnyfood.entydi.Order;
-import com.example.doanhunnyfood.entydi.Order_detail;
-import com.example.doanhunnyfood.entydi.Table;
+import com.example.doanhunnyfood.entity.Food;
+import com.example.doanhunnyfood.entity.Order;
+import com.example.doanhunnyfood.entity.Order_detail;
+import com.example.doanhunnyfood.entity.Table;
 import com.example.doanhunnyfood.ui.DinnerTable.DinnerTableFragment;
 
 import java.util.ArrayList;
@@ -136,7 +136,7 @@ public class FoodFragment extends Fragment {
             else{
                 Order newOrder = new Order();
                 newOrder.table_id = table_id;
-                newOrder.employee_id = 1;
+                newOrder.user_id = 1;
                 newOrder.order_time = System.currentTimeMillis();
                 newOrder.total = 0;
                 newOrder.status = 0;

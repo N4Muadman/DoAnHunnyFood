@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <!-- Border color và width -->
+    <stroke
+        android:width="1dp"
+        android:color="#CCCCCC" />  <!-- Màu sắc của border -->
+
+    <!-- Background color -->
+    <solid android:color="#FFFFFF" />  <!-- Màu nền của TextInputEditText -->
+
+    <!-- Border radius, nếu cần -->
+    <corners android:radius="30dp" />  <!-- Đường viền tròn, nếu muốn -->
+
+
+
+</shape>

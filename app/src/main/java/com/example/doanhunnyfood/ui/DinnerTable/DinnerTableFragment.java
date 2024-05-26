@@ -1,6 +1,5 @@
 package com.example.doanhunnyfood.ui.DinnerTable;
 
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -16,13 +15,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.example.doanhunnyfood.R;
 import com.example.doanhunnyfood.adapter.ItemClickListener;
 import com.example.doanhunnyfood.adapter.TableAdapter;
-import com.example.doanhunnyfood.entydi.Order;
-import com.example.doanhunnyfood.entydi.Table;
+import com.example.doanhunnyfood.entity.Order;
+import com.example.doanhunnyfood.entity.Table;
 
 import java.util.List;
 
