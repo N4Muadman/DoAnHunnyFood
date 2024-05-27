@@ -24,7 +24,7 @@ public class Food {
     @ColumnInfo(name = "status")
     public int status;
 
-    public Food(String name, String description, double price, int image, int status) {
+    public Food() {
         this.name = name;
         this.description = description;
         this.price = price;
