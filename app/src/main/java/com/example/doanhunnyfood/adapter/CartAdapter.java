@@ -17,7 +17,6 @@ import java.util.List;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder> {
     private List<Cart> cartList;
-    private ItemClickListener itemClickListener;
 
     public CartAdapter(List<Cart> cartList) {
         this.cartList = cartList;

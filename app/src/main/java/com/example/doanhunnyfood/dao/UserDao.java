@@ -20,7 +20,7 @@ public interface UserDao {
     void insert(User user);
 
     @Query("SELECT * FROM user WHERE userName = :username AND password = :password")
-    Single<User> login(String username, String password);
+    User login(String username, String password);
 
     @Update
     void update(User user);

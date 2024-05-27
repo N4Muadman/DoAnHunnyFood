@@ -1,6 +1,11 @@
 package com.example.doanhunnyfood.entity;
 
-public class OrderView {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
+
+public class OrderView implements Parcelable {
     private int orderId;
     private int tableId;
     private int foodId;
@@ -113,5 +118,50 @@ public class OrderView {
 
     public void setTotalFood(double totalFood) {
         this.totalFood = totalFood;
+    }
+
+    public static final Parcelable.Creator<OrderView> CREATOR = new Parcelable.Creator<OrderView>() {
+        @Override
+        public OrderView createFromParcel(Parcel in) {
+            return new OrderView(in);
+        }
+
+        @Override
+        public OrderView[] newArray(int size) {
+            return new OrderView[size];
+        }
+    };
+
+    protected OrderView(Parcel in) {
+        orderId = in.readInt();
+        tableId = in.readInt();
+        foodId = in.readInt();
+        foodImg = in.readInt();
+        quantity = in.readInt();
+        price = in.readDouble();
+        tableName = in.readString();
+        foodName = in.readString();
+        statusOrder = in.readInt();
+        statusFood = in.readInt();
+        totalFood = in.readDouble();
+    }
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
+        dest.writeInt(orderId);
+        dest.writeInt(tableId);
+        dest.writeInt(foodId);
+        dest.writeInt(foodImg);
+        dest.writeInt(quantity);
+        dest.writeDouble(price);
+        dest.writeString(tableName);
+        dest.writeString(foodName);
+        dest.writeInt(statusOrder);
+        dest.writeInt(statusFood);
+        dest.writeDouble(totalFood);
     }
 }

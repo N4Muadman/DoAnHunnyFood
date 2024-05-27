@@ -34,11 +34,16 @@ public class UserRepository {
     }
 
 
-    public Single<User> login(String username, String password) {
-        return userDao.login(username, password)
-                .subscribeOn(Schedulers.io()); // Thực hiện trên background thread
+    public void login(String username, String password, LoginCallback callback) {
+        executorService.execute(() -> {
+            User user = userDao.login(username, password);
+            callback.onLoginResult(user);
+        });
     }
 
+    public interface LoginCallback {
+        void onLoginResult(User user);
+    }
     public void insert(User user){
         executorService.execute(()-> userDao.insert(user));
     }
