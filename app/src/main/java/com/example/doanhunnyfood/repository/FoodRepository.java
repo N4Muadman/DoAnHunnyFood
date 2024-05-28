@@ -16,14 +16,12 @@ public class FoodRepository {
     private FoodDao mFoodDao;
 
     private LiveData<List<Food>> AllDish;
-
-
     ExecutorService executorService;
 
 
     public FoodRepository(Application application) {
         AppDatabase db = AppDatabase.getDatabase(application);
-        this.mFoodDao = db.dishDao();
+        this.mFoodDao = db.foodDao();
         this.AllDish = mFoodDao.FindAll();
         this.executorService = Executors.newFixedThreadPool(4);
     }

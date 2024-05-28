@@ -63,6 +63,14 @@ public class FoodFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        mViewModel = new ViewModelProvider(this).get(FoodViewModel.class);
+        mViewModel.getAllDish().observe(getViewLifecycleOwner(), new Observer<List<Food>>() {
+            @Override
+            public void onChanged(List<Food> foodList) {
+                foodAdapter.setDishList(foodList);
+            }
+        });
         recyclerViewDish = view.findViewById(R.id.recyclerViewDish);
         txtNameTable = view.findViewById(R.id.txtNameTable);
         recyclerViewCart = view.findViewById(R.id.recyclerViewCart);
@@ -173,13 +181,7 @@ public class FoodFragment extends Fragment {
 
 
 
-        mViewModel = new ViewModelProvider(this).get(FoodViewModel.class);
-        mViewModel.getAllDish().observe(getViewLifecycleOwner(), new Observer<List<Food>>() {
-            @Override
-            public void onChanged(List<Food> foodList) {
-                    foodAdapter.setDishList(foodList);
-                }
-        });
+
 
     }
 }

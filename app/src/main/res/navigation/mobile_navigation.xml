@@ -13,7 +13,7 @@
 
     <fragment
         android:id="@+id/nav_qlUser"
-        android:name="com.example.doanhunnyfood.ui.slideshow.UserFragment"
+        android:name="com.example.doanhunnyfood.ui.user.UserFragment"
         android:label="Quản lý nhân viên"
         tools:layout="@layout/fragment_user" />
     <fragment

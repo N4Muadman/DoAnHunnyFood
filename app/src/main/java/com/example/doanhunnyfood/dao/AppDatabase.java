@@ -22,7 +22,7 @@ import java.util.concurrent.Executors;
 public abstract class AppDatabase extends RoomDatabase {
     public abstract TableDao tableDao();
 
-    public abstract FoodDao dishDao();
+    public abstract FoodDao foodDao();
 
     public abstract OrderDao orderDao();
 
@@ -43,7 +43,7 @@ public abstract class AppDatabase extends RoomDatabase {
             databaseWriteExecutor.execute(() ->{
                 populateInitiaData(INSTANCE.tableDao());
 
-                populateInitialDishData(INSTANCE.dishDao());
+                populateInitialDishData(INSTANCE.foodDao());
                 populateInitialUserData(INSTANCE.userDao());
             });
         }

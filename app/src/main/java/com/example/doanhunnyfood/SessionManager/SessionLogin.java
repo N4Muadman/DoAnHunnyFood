@@ -41,26 +41,6 @@ public class SessionLogin {
         editor.putString(KEY_USERNAME, user.fullName);
         editor.apply();
     }
-    public void setLoggedInUserFromSingle(Single<User> userSingle) {
-        userSingle.subscribe(new SingleObserver<User>() {
-            @Override
-            public void onSubscribe(@NonNull Disposable d) {
-                // Không cần làm gì khi bắt đầu subscribe
-            }
-
-            @Override
-            public void onSuccess(@NonNull User user) {
-                // Lưu trữ thông tin người dùng đã đăng nhập
-                setLoggedInUser(user);
-            }
-
-            @Override
-            public void onError(@NonNull Throwable e) {
-                // Xử lý khi có lỗi xảy ra trong quá trình lấy thông tin người dùng
-                e.printStackTrace();
-            }
-        });
-    }
     public String getLoggedInEmail() {
         return pref.getString(KEY_USER_EMAIL, "");
     }

@@ -21,9 +21,11 @@ import com.example.doanhunnyfood.ui.DinnerTable.OnTableSelectedListener;
 import com.example.doanhunnyfood.ui.Food.FoodFragment;
 import com.example.doanhunnyfood.ui.Food.FoodManagerFragment;
 import com.example.doanhunnyfood.ui.UnpaidOrderDetailFragment;
+
+import com.example.doanhunnyfood.ui.UnpainOrder.UnpaidOrderDetailFragment;
+
 import com.example.doanhunnyfood.ui.gallery.GalleryFragment;
-import com.example.doanhunnyfood.ui.slideshow.UserFragment;
-import com.google.android.material.snackbar.Snackbar;
+import com.example.doanhunnyfood.ui.user.UserFragment;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.core.content.ContextCompat;
@@ -93,6 +95,7 @@ public class MainActivity extends AppCompatActivity implements OnTableSelectedLi
 
             }
         });
+
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
         TabLayout tabLayout = binding.appBarMain.navViewTab;
@@ -155,7 +158,6 @@ public class MainActivity extends AppCompatActivity implements OnTableSelectedLi
 
             if(id == R.id.nav_logout){
                 sessionLogin.setLogin(false);
-                sessionLogin.logout();
                 Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                 startActivity(intent);
                 finish();
@@ -284,6 +286,8 @@ public class MainActivity extends AppCompatActivity implements OnTableSelectedLi
                         unpaidOrderViewList.add(odv);
                     }
                 }
+
+
                 UnpaidOrderDetailFragment unpaidOrderDetailFragment = UnpaidOrderDetailFragment.newInstance(unpaidOrderViewList);
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragment_container, unpaidOrderDetailFragment)
