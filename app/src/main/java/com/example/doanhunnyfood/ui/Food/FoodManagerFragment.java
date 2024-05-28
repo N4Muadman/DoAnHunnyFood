@@ -47,6 +47,8 @@ public class FoodManagerFragment extends Fragment {
         mAdapter = new FoodManagerRecycAdapter(getActivity());
         mRv.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRv.setAdapter(mAdapter);
+
+
     }
 
     @Override

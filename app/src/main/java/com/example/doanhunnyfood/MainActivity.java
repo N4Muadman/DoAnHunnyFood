@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements OnTableSelectedLi
         });
         setSupportActionBar(binding.appBarMain.toolbar);
         final MainActivity currentContext = this;
-        binding.appBarMain.navViewTab.setOnClickListener(new View.OnClickListener() {
+        binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 List<Fragment> fragments =getSupportFragmentManager().getFragments();

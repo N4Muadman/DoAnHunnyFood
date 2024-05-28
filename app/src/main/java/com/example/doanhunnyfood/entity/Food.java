@@ -24,12 +24,11 @@ public class Food {
     @ColumnInfo(name = "status")
     public int status;
 
-    public Food() {
+    public Food(String name, String description, double price, int image, int status) {
         this.name = name;
         this.description = description;
         this.price = price;
         this.image = image;
         this.status = status;
     }
-
 }

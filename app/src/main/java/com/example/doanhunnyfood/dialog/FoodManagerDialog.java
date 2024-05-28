@@ -44,12 +44,8 @@ public class FoodManagerDialog {
                     @Override
                     public void onClick(DialogInterface dialog, int i) {
 
-                        Food food =new Food();
-                        food.name=edtName.getText().toString();
-                        food.description =edtDes.getText().toString();
-                        food.price = edtPrice.getInputType();
-                        food.image = edtImage.getInputType();
-                        food.status=edtStatus.getInputType();
+                        Food food =new Food(edtName.getText().toString(), edtDes.getText().toString(),edtPrice.getInputType(),edtImage.getInputType(),edtStatus.getInputType());
+
                         mViewModel.insert(food);
                         Toast.makeText(context, "Món ăn được lưu", Toast.LENGTH_SHORT).show();
 

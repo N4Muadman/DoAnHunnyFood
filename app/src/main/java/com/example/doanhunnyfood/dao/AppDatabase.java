@@ -8,6 +8,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
+import com.example.doanhunnyfood.R;
 import com.example.doanhunnyfood.Utils.PasswordUtils;
 import com.example.doanhunnyfood.entity.Food;
 import com.example.doanhunnyfood.entity.Order;
@@ -64,7 +65,7 @@ public abstract class AppDatabase extends RoomDatabase {
 
     private static void populateInitiaData(TableDao tableDao) {
 
-        String[] tables = new String[]{"ban 1", "ban 2", "ban 3", "ban 4", "ban 5"};
+        String[] tables = new String[]{"bàn 1", "bàn 2", "bàn 3", "bàn 4", "bàn 5", "bàn 6"};
         for (String name : tables) {
             Table table = new Table();
             table.name = name;
@@ -73,11 +74,11 @@ public abstract class AppDatabase extends RoomDatabase {
     }
     private static void populateInitialDishData(FoodDao foodDao) {
         Food[] foods = new Food[]{
-                new Food(),
-                new Food(),
-                new Food(),
-                new Food(),
-                new Food()
+                new Food("pho bo", "chi tiet", 50.00, R.drawable.img_pho, 1),
+                new Food("bun cha", "chi tiet", 50.00, R.drawable.img_bun_cha, 1),
+                new Food("coffee", "chi tiet", 50.00, R.drawable.img_coffee, 1),
+                new Food("banh mi", "chi tiet", 50.00, R.drawable.img_banh_mi, 1),
+                new Food("tra", "chi tiet", 50.00, R.drawable.img_tea, 1)
 
         };
         for (Food food : foods) {

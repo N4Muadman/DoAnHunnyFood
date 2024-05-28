@@ -20,6 +20,10 @@
             android:id="@+id/nav_qlUser"
             android:icon="@drawable/ic_menu_users"
             android:title="Quản lý nhân viên" />
+        <item
+            android:id="@+id/nav_qlDonHang"
+            android:icon="@drawable/ic_menu_food"
+            android:title="Quản lý đơn hàng"/>
     </group>
     <item android:title="Đăng xuất">
         <menu>
