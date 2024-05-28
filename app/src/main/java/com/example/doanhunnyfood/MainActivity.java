@@ -20,7 +20,6 @@ import com.example.doanhunnyfood.ui.DinnerTable.DinnerTableFragment;
 import com.example.doanhunnyfood.ui.DinnerTable.OnTableSelectedListener;
 import com.example.doanhunnyfood.ui.Food.FoodFragment;
 import com.example.doanhunnyfood.ui.Food.FoodManagerFragment;
-import com.example.doanhunnyfood.ui.UnpaidOrderDetailFragment;
 
 import com.example.doanhunnyfood.ui.UnpainOrder.UnpaidOrderDetailFragment;
 
@@ -83,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements OnTableSelectedLi
         });
         setSupportActionBar(binding.appBarMain.toolbar);
         final MainActivity currentContext = this;
-        binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
+        binding.appBarMain.navViewTab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 List<Fragment> fragments =getSupportFragmentManager().getFragments();
