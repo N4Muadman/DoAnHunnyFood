@@ -35,7 +35,6 @@ public class FoodViewModel extends AndroidViewModel {
         return mAllDish;
     }
 
-
     public void insertOrder(Order order, OrderRepository.InsertOrderCallback callback){
         orderRepository.insert(order, callback);
     }

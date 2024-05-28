@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.example.doanhunnyfood.SessionManager.SessionLogin;
 import com.example.doanhunnyfood.databinding.ActivityMainBinding;
+import com.example.doanhunnyfood.dialog.FoodManagerDialog;
 import com.example.doanhunnyfood.entity.Order;
 import com.example.doanhunnyfood.entity.OrderView;
 import com.example.doanhunnyfood.entity.Table;
@@ -19,6 +20,7 @@ import com.example.doanhunnyfood.ui.DinnerTable.DinnerTableFragment;
 import com.example.doanhunnyfood.ui.DinnerTable.OnTableSelectedListener;
 import com.example.doanhunnyfood.ui.Food.FoodFragment;
 import com.example.doanhunnyfood.ui.UnpainOrder.UnpaidOrderDetailFragment;
+import com.example.doanhunnyfood.ui.Food.FoodManagerFragment;
 import com.example.doanhunnyfood.ui.gallery.GalleryFragment;
 import com.example.doanhunnyfood.ui.user.UserFragment;
 import com.google.android.material.navigation.NavigationView;
@@ -77,6 +79,19 @@ public class MainActivity extends AppCompatActivity implements OnTableSelectedLi
             }
         });
         setSupportActionBar(binding.appBarMain.toolbar);
+        final MainActivity currentContext = this;
+        binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                List<Fragment> fragments =getSupportFragmentManager().getFragments();
+                Fragment fragment = fragments.get(fragments.size()-1);
+                if(fragment instanceof FoodManagerFragment){
+                    FoodManagerDialog dialog = new FoodManagerDialog(currentContext,(FoodManagerFragment) fragment);
+                    dialog.show();
+                }
+
+            }
+        });
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
         TabLayout tabLayout = binding.appBarMain.navViewTab;
@@ -127,14 +142,15 @@ public class MainActivity extends AppCompatActivity implements OnTableSelectedLi
             if (id == R.id.nav_home) {
                 fragment = new DinnerTableFragment();
                 binding.appBarMain.toolbar.setTitle("Home");
-            } else if (id == R.id.nav_monan) {
-                fragment = new GalleryFragment(); // Thay thế bằng Fragment của bạn
-                binding.appBarMain.toolbar.setTitle("Gallery");
-            }
+            }else if (id == R.id.nav_qlMonAn) {
+                    fragment = new FoodManagerFragment(); // Thay thế bằng Fragment của bạn
+                    binding.appBarMain.toolbar.setTitle("Quản lý món ăn");
+                }
             else if (id == R.id.nav_qlUser) {
                 fragment = new UserFragment(); // Thay thế bằng Fragment của bạn
                 binding.appBarMain.toolbar.setTitle("Quản lý nhân viên");
             }
+
 
             if(id == R.id.nav_logout){
                 sessionLogin.setLogin(false);
