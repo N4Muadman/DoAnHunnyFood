@@ -33,4 +33,10 @@ public class FoodRepository {
     public void insert(Food food){
         executorService.execute(() -> mFoodDao.insert(food));
     }
+    public void delete(Food food){
+        executorService.execute(() -> mFoodDao.delete(food));
+    }
+    public void update(Food food){
+        executorService.execute(() -> mFoodDao.update(food));
+    }
 }

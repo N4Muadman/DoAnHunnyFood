@@ -69,4 +69,11 @@ public class Table implements Parcelable {
         dest.writeInt(status);
         dest.writeString(description);
     }
+    public Table(String name,int status,String description) {
+        this.name = name;
+        this.status = status;
+        this.description = description;
+    }
+
+
 }

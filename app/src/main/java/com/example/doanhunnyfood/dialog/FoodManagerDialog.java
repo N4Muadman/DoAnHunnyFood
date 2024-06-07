@@ -3,12 +3,12 @@ package com.example.doanhunnyfood.dialog;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Toast;
 
 import com.example.doanhunnyfood.R;
-import com.example.doanhunnyfood.adapter.FoodManagerRecycAdapter;
 import com.example.doanhunnyfood.entity.Food;
 import com.example.doanhunnyfood.ui.Food.FoodManagerFragment;
 import com.example.doanhunnyfood.ui.Food.FoodManagerViewModel;
@@ -16,44 +16,73 @@ import com.google.android.material.textfield.TextInputEditText;
 
 public class FoodManagerDialog {
     private FoodManagerViewModel mViewModel;
-    private LayoutInflater mlayoutInflater;
-    private AlertDialog mDiglog;
-    private TextInputEditText edtID, edtName,edtPrice,edtStatus,edtImage,edtDes;
-
+    private LayoutInflater mLayoutInflater;
+    private AlertDialog mDialog;
+    private TextInputEditText edtID, edtName, edtPrice, edtStatus, edtImage, edtDes;
     private boolean mEditMode;
 
-    public FoodManagerDialog(final Context context, FoodManagerFragment fragment) {
+    public FoodManagerDialog(final Context context, FoodManagerFragment fragment, Food... food) {
         mViewModel = fragment.getViewModel();
-        mlayoutInflater = LayoutInflater.from(context);
-        View view = mlayoutInflater.inflate(R.layout.dialog_food_manager,null);
+        mLayoutInflater = LayoutInflater.from(context);
+        View view = mLayoutInflater.inflate(R.layout.dialog_food_manager, null);
+
         edtID = view.findViewById(R.id.edtID);
         edtName = view.findViewById(R.id.edtName);
-        edtImage = view.findViewById(R.id.edtImage);
         edtPrice = view.findViewById(R.id.edtPrice);
         edtStatus = view.findViewById(R.id.edtStatus);
         edtDes = view.findViewById(R.id.edtDescription);
+        edtImage = view.findViewById(R.id.edtImage);
+
+        if (food != null && food.length > 0) {
+            edtID.setText(String.valueOf(food[0].id));
+            edtName.setText(food[0].name);
+            edtPrice.setText(String.valueOf(food[0].price));
+            edtStatus.setText(String.valueOf(food[0].status));
+            edtDes.setText(food[0].description);
+            edtImage.setText(String.valueOf(food[0].image));
+            mEditMode = true;
+        } else {
+            mEditMode = false;
+        }
+
         AlertDialog.Builder builder = new AlertDialog.Builder(context)
                 .setView(view)
-                .setNegativeButton("Dong", new DialogInterface.OnClickListener() {
+                .setNegativeButton("Đóng", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int i) {
-                        mDiglog.dismiss();
+                        mDialog.dismiss();
                     }
                 })
-                .setPositiveButton("Luu", new DialogInterface.OnClickListener() {
+                .setPositiveButton("Lưu", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int i) {
+                        try {
+                            String name = edtName.getText().toString();
+                            String description = edtDes.getText().toString();
+                            double price = Double.parseDouble(edtPrice.getText().toString());
+                            int image = Integer.parseInt(edtImage.getText().toString());
+                            int status = Integer.parseInt(edtStatus.getText().toString());
 
-                        Food food =new Food(edtName.getText().toString(), edtDes.getText().toString(),edtPrice.getInputType(),edtImage.getInputType(),edtStatus.getInputType());
+                            Food food = new Food(name, description, price, image, status);
 
-                        mViewModel.insert(food);
-                        Toast.makeText(context, "Món ăn được lưu", Toast.LENGTH_SHORT).show();
-
+                            if (mEditMode) {
+                                food.id = Integer.parseInt(edtID.getText().toString());
+                                mViewModel.update(food);
+                                Toast.makeText(context, "Món ăn được cập nhật", Toast.LENGTH_SHORT).show();
+                            } else {
+                                mViewModel.insert(food);
+                                Toast.makeText(context, "Món ăn được lưu", Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (NumberFormatException e) {
+                            Log.e("FoodManagerDialog", "NumberFormatException: " + e.getMessage());
+                            Toast.makeText(context, "Dữ liệu nhập không hợp lệ", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
-        mDiglog = builder.create();
+        mDialog = builder.create();
     }
-    public void show(){
-        mDiglog.show();
+
+    public void show() {
+        mDialog.show();
     }
 }

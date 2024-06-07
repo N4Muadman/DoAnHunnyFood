@@ -31,4 +31,28 @@ public class Food {
         this.image = image;
         this.status = status;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public int getImage() {
+        return image;
+    }
+
+    public int getStatus() {
+        return status;
+    }
 }

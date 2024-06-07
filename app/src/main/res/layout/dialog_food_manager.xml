@@ -19,7 +19,8 @@
             android:layout_margin="12dp"
             android:gravity="center"
             android:text="MÓN ĂN"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:textStyle="bold" />
     </LinearLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -58,17 +59,6 @@
             android:hint="Giá Tiền" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edtImage"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Ảnh" />
-    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
@@ -92,5 +82,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Ghi Chú" />
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtImage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ảnh" />
     </com.google.android.material.textfield.TextInputLayout>
 </LinearLayout>
