@@ -39,8 +39,12 @@ public class TableManagerRecycAdapter extends RecyclerView.Adapter<TableManagerR
 
     @Override
     public void onBindViewHolder(@NonNull TableManagerViewHolder holder, int position) {
-        if (mList != null){
+        if (mList != null && position < mList.size()) {
             holder.tvTableName.setText(mList.get(position).name);
+
+            // Chuyển đổi giá trị int thành chuỗi trước khi đặt vào TextView
+            String statusText = String.valueOf(mList.get(position).status);
+            holder.tvStatus.setText(statusText);
         }
     }
 
@@ -63,14 +67,15 @@ public class TableManagerRecycAdapter extends RecyclerView.Adapter<TableManagerR
     }
 
     public static class TableManagerViewHolder extends RecyclerView.ViewHolder{
-        public TextView tvTableName;
+        public TextView tvTableName, tvStatus;
         public ImageView ivEdit;
         public int position;
         public CardView cv;
 
         public TableManagerViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvTableName = itemView.findViewById(R.id.tvTableName);
+            tvTableName = itemView.findViewById(R.id.tvNameTable);
+            tvStatus = itemView.findViewById(R.id.tvStatus);
             ivEdit = itemView.findViewById(R.id.ivEdit);
             cv = (CardView) itemView;
 
