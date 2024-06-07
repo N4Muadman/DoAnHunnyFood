@@ -15,6 +15,10 @@ public interface Order_detailDao {
     @Query("SELECT * FROM order_detail")
     LiveData<List<Order_detail>> findAll();
 
+
+    @Query("SELECT COUNT(*) FROM `order_detail`")
+    LiveData<Integer> getOrderCount();
+
     @Insert
     void insert(Order_detail orderDetail);
 

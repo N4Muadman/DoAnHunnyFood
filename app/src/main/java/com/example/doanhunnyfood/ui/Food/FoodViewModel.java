@@ -39,8 +39,23 @@ public class FoodViewModel extends AndroidViewModel {
         orderRepository.insert(order, callback);
     }
 
-    public void insertOrderDetail(List<Order_detail> orderDetails){
-        orderDetailRepository.insertOrderDetails(orderDetails);
+    public void insertOrderDetail(List<Order_detail> orderDetails, OrderDetailInsertCallback callback) {
+        orderDetailRepository.insertOrderDetails(orderDetails, new Order_detailRepository.OrderDetailInsertCallback() {
+            @Override
+            public void onOrderDetailInserted() {
+                callback.onOrderDetailInserted();
+            }
+
+            @Override
+            public void onOrderDetailInsertFailed() {
+                callback.onOrderDetailInsertFailed();
+            }
+        });
+    }
+
+    public interface OrderDetailInsertCallback {
+        void onOrderDetailInserted();
+        void onOrderDetailInsertFailed();
     }
 
 }

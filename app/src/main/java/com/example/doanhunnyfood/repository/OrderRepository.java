@@ -44,4 +44,11 @@ public class OrderRepository {
     public interface InsertOrderCallback{
         void onOrderInserted(long orderId);
     }
+    public LiveData<Integer> getOrderCount() {
+        return orderDao.getOrderCount();
+    }
+
+    public void update(Order order){
+        executorService.execute(() -> orderDao.update(order));
+    }
 }

@@ -30,13 +30,6 @@ public class Table implements Parcelable {
         // Default constructor required for calls to DataSnapshot.getValue(Table.class)
     }
 
-    public boolean isHasOrder() {
-        return hasOrder;
-    }
-
-    public void setHasOrder(boolean hasOrder) {
-        this.hasOrder = hasOrder;
-    }
 
     protected Table(Parcel in) {
         id = in.readInt();

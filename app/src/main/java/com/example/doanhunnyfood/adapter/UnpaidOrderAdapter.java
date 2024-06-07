@@ -18,8 +18,8 @@ public class UnpaidOrderAdapter extends RecyclerView.Adapter<UnpaidOrderAdapter.
 
     private List<OrderView> orderViewList;
 
-    public UnpaidOrderAdapter(List<OrderView> orderViewList) {
-        this.orderViewList = orderViewList;
+    public UnpaidOrderAdapter() {
+
     }
 
     @NonNull
@@ -46,6 +46,11 @@ public class UnpaidOrderAdapter extends RecyclerView.Adapter<UnpaidOrderAdapter.
             return orderViewList.size();
         }
         return 0;
+    }
+
+    public void setOrderViewList(List<OrderView> orderViews){
+        orderViewList = orderViews;
+        notifyDataSetChanged();
     }
 
     public class UnpaidOrderViewHolder extends RecyclerView.ViewHolder {

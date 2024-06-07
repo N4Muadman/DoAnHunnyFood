@@ -61,17 +61,18 @@ public class LoginActivity extends AppCompatActivity {
             password = PasswordUtils.hashPassword(password);
 
             if (userName.isEmpty() || password.isEmpty()) {
-                Toast.makeText(LoginActivity.this, "Nhan mat khau va ten dang nhap", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, "vui long Nhap mat khau va ten dang nhap", Toast.LENGTH_SHORT).show();
                 return;
             }
             userRepository.login(userName, password, user -> runOnUiThread(() -> {
                 if (user != null) {
-                    Toast.makeText(LoginActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
                     sessionLogin.setLogin(true);
+                    sessionLogin.setLoggedInUser(user);
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
                     finish();
-                } else {
+                } else if(user == null){
                     Toast.makeText(LoginActivity.this, "tai khoan vs mat khau sai", Toast.LENGTH_SHORT).show();
                 }
             }));

@@ -3,6 +3,7 @@ package com.example.doanhunnyfood;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Menu;
@@ -12,12 +13,14 @@ import android.widget.TextView;
 import com.example.doanhunnyfood.SessionManager.SessionLogin;
 import com.example.doanhunnyfood.databinding.ActivityMainBinding;
 import com.example.doanhunnyfood.dialog.FoodManagerDialog;
+import com.example.doanhunnyfood.dialog.UserManagerDialog;
 import com.example.doanhunnyfood.entity.Order;
 import com.example.doanhunnyfood.entity.OrderView;
 import com.example.doanhunnyfood.entity.Table;
 import com.example.doanhunnyfood.repository.OrderRepository;
 import com.example.doanhunnyfood.ui.DinnerTable.DinnerTableFragment;
 import com.example.doanhunnyfood.ui.DinnerTable.OnTableSelectedListener;
+import com.example.doanhunnyfood.ui.DinnerTable.TableManagerFragment;
 import com.example.doanhunnyfood.ui.Food.FoodFragment;
 import com.example.doanhunnyfood.ui.Food.FoodManagerFragment;
 
@@ -47,10 +50,8 @@ public class MainActivity extends AppCompatActivity implements OnTableSelectedLi
 
     private LiveData<List<Order>> orderListData;
 
-    private LiveData<List<OrderView>> orderViewListData;
     private List<Order> orderList = new ArrayList<>();
 
-    private List<OrderView> orderViewList = new ArrayList<>();
 
     private SessionLogin sessionLogin;
 
@@ -66,13 +67,6 @@ public class MainActivity extends AppCompatActivity implements OnTableSelectedLi
 
         orderRepository = new OrderRepository(getApplication());
         orderListData = orderRepository.getAllOrder();
-        orderViewListData = orderRepository.getAllOrderView();
-        orderViewListData.observe(this, orderViews -> {
-            if (orderViews != null) {
-                orderViewList.clear();
-                orderViewList.addAll(orderViews);
-            }
-        });
         orderListData.observe(this, orders -> {
             if (orders != null) {
                 orderList.clear(); // Xóa các phần tử cũ trong danh sách hiện tại
@@ -89,6 +83,10 @@ public class MainActivity extends AppCompatActivity implements OnTableSelectedLi
                 Fragment fragment = fragments.get(fragments.size()-1);
                 if(fragment instanceof FoodManagerFragment){
                     FoodManagerDialog dialog = new FoodManagerDialog(currentContext,(FoodManagerFragment) fragment);
+                    dialog.show();
+                }
+                if (fragment instanceof UserFragment){
+                    UserManagerDialog dialog = new UserManagerDialog(currentContext, (UserFragment) fragment);
                     dialog.show();
                 }
 
@@ -149,6 +147,10 @@ public class MainActivity extends AppCompatActivity implements OnTableSelectedLi
                     fragment = new FoodManagerFragment(); // Thay thế bằng Fragment của bạn
                     binding.appBarMain.toolbar.setTitle("Quản lý món ăn");
                 }
+            else if (id == R.id.nav_ban){
+                fragment = new TableManagerFragment(); // Thay thế bằng Fragment của bạn
+                binding.appBarMain.toolbar.setTitle("Quản lý món ăn");
+            }
             else if (id == R.id.nav_qlUser) {
                 fragment = new UserFragment(); // Thay thế bằng Fragment của bạn
                 binding.appBarMain.toolbar.setTitle("Quản lý nhân viên");
@@ -182,7 +184,7 @@ public class MainActivity extends AppCompatActivity implements OnTableSelectedLi
         TextView txtFullName = headerView.findViewById(R.id.txtFullName);
         TextView txtEmail = headerView.findViewById(R.id.txtEmail);
 
-        if (fullname.isEmpty()  && !fullname.isEmpty()) {
+        if (!fullname.isEmpty()  && !email.isEmpty()) {
             txtFullName.setText(fullname);
             txtEmail.setText(email);
         } else {
@@ -274,20 +276,11 @@ public class MainActivity extends AppCompatActivity implements OnTableSelectedLi
     @Override
     public void onTableSelected(Table table) {
         boolean foundOrder = false;
-        List<OrderView> unpaidOrderViewList = new ArrayList<>();
+        Log.d("mainActivity", "onTableSelected: " + orderList.size());
         for (Order order : orderList) {
             if (order.status == 0 && order.table_id == table.id) {
                 foundOrder = true;
-
-                // Lọc danh sách orderViewList
-                for (OrderView odv : orderViewList) {
-                    if (odv.getOrderId() == order.id) {
-                        unpaidOrderViewList.add(odv);
-                    }
-                }
-
-
-                UnpaidOrderDetailFragment unpaidOrderDetailFragment = UnpaidOrderDetailFragment.newInstance(unpaidOrderViewList);
+                UnpaidOrderDetailFragment unpaidOrderDetailFragment = UnpaidOrderDetailFragment.newInstance(order);
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragment_container, unpaidOrderDetailFragment)
                         .addToBackStack(null)

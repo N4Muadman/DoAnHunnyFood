@@ -39,6 +39,7 @@ public class SessionLogin {
     public void setLoggedInUser(User user) {
         editor.putString(KEY_USER_EMAIL, user.email);
         editor.putString(KEY_USERNAME, user.fullName);
+        editor.putInt("userId", user.id);
         editor.apply();
     }
     public String getLoggedInEmail() {
@@ -47,6 +48,9 @@ public class SessionLogin {
 
     public String getLoggedInFullname() {
         return pref.getString(KEY_USERNAME, "");
+    }
+    public Integer getLoggedInUserId(){
+        return pref.getInt("userId", 0);
     }
     public void logout() {
         editor.clear();

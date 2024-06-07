@@ -118,7 +118,7 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.TableViewHol
             long orderTimeMillis = 0;
             if (orderList != null) {
                 for (Order order : orderList) {
-                    if (order.table_id == tableId) {
+                    if (order.status == 0 && order.table_id == tableId) {
                         orderTimeMillis = order.order_time;
                         break; // Tìm thấy order tương ứng, thoát vòng lặp
                     }

@@ -29,11 +29,24 @@ public class Order_detailRepository {
         return AllOrder_detail;
     }
 
-    public void insertOrderDetails(List<Order_detail> orderDetails) {
+    public void insertOrderDetails(List<Order_detail> orderDetails, OrderDetailInsertCallback callback) {
         executorService.execute(() -> {
-            for (Order_detail orderDetail : orderDetails) {
-                orderDetailDao.insert(orderDetail);
+            try {
+                for (Order_detail orderDetail : orderDetails) {
+                    orderDetailDao.insert(orderDetail);
+                }
+                callback.onOrderDetailInserted();
+            } catch (Exception e) {
+                callback.onOrderDetailInsertFailed();
             }
         });
+    }
+    public interface OrderDetailInsertCallback {
+        void onOrderDetailInserted();
+        void onOrderDetailInsertFailed();
+    }
+
+    public LiveData<Integer> getOrderCount() {
+        return orderDetailDao.getOrderCount();
     }
 }

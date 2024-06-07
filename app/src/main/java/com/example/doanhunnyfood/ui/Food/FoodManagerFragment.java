@@ -48,7 +48,6 @@ public class FoodManagerFragment extends Fragment {
         mRv.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRv.setAdapter(mAdapter);
 
-
     }
 
     @Override

@@ -36,17 +36,18 @@
         android:text="Xac nhan"
         app:layout_constraintBottom_toTopOf="@id/recyclerViewDish"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/button"
+        app:layout_constraintStart_toEndOf="@id/btnCancel"
         app:layout_constraintTop_toBottomOf="@id/recyclerViewCart" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnCancel"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:backgroundTint="@color/teal_700"
         android:text="Huy"
         app:layout_constraintBottom_toTopOf="@id/recyclerViewDish"
-        app:layout_constraintEnd_toStartOf="@+id/btnXacNhan"
+        app:layout_constraintEnd_toStartOf="@id/btnXacNhan"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/recyclerViewCart" />
 

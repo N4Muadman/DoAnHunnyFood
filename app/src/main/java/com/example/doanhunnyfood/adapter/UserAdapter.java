@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.doanhunnyfood.R;
+import com.example.doanhunnyfood.entity.Food;
 import com.example.doanhunnyfood.entity.User;
 
 import java.util.List;
@@ -48,6 +49,12 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
     public void setUserList(List<User> userList) {
         this.userList = userList;
         notifyDataSetChanged();
+    }
+    public User getItem(int position) {
+        if (userList != null && position >= 0 && position < userList.size()) {
+            return userList.get(position);
+        }
+        return null;
     }
 
     public class UserViewHolder extends RecyclerView.ViewHolder {

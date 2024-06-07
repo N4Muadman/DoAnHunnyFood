@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.doanhunnyfood.R;
+import com.example.doanhunnyfood.SessionManager.SessionLogin;
 import com.example.doanhunnyfood.entity.Cart;
 import com.example.doanhunnyfood.adapter.CartAdapter;
 import com.example.doanhunnyfood.adapter.FoodAdapter;
@@ -43,8 +45,8 @@ public class FoodFragment extends Fragment {
     private CartAdapter cartAdapter;
     private List<Cart> listCat;
     private FoodViewModel mViewModel;
-
     private int table_id;
+    private SessionLogin sessionLogin;
 
     public static FoodFragment newInstance(Table table) {
         FoodFragment fragment = new FoodFragment();
@@ -136,15 +138,20 @@ public class FoodFragment extends Fragment {
             }
         });
         btnXN = view.findViewById(R.id.btnXacNhan);
-
+        btnHuy = view.findViewById(R.id.btnCancel);
+        btnHuy.setOnClickListener(v -> {
+            requireActivity().getSupportFragmentManager().popBackStack();
+        });
         btnXN.setOnClickListener(v -> {
             if(cartAdapter == null){
                 Toast.makeText(getActivity(), "Ban chua chon mon, vui long do an truoc", Toast.LENGTH_SHORT).show();
             }
             else{
+                sessionLogin = new SessionLogin(getContext());
+                int userId = sessionLogin.getLoggedInUserId();
                 Order newOrder = new Order();
                 newOrder.table_id = table_id;
-                newOrder.user_id = 1;
+                newOrder.user_id = userId;
                 newOrder.order_time = System.currentTimeMillis();
                 newOrder.total = 0;
                 newOrder.status = 0;
@@ -159,29 +166,34 @@ public class FoodFragment extends Fragment {
                         orderDetail.TotalFood = cart.getQtt() * cart.getPrice();
                         orderDetails.add(orderDetail);
                     }
+                    mViewModel.insertOrderDetail(orderDetails, new FoodViewModel.OrderDetailInsertCallback() {
+                        @Override
+                        public void onOrderDetailInserted() {
+                            // Thành công
+                            listCat.clear();
+                            cartAdapter.setCartList(listCat);
+                            cartAdapter.notifyDataSetChanged();
 
-                    mViewModel.insertOrderDetail(orderDetails);
+                            Log.d("orderDetail: ", "thanh cong");
+
+                        }
+
+                        @Override
+                        public void onOrderDetailInsertFailed() {
+                            Log.d("orderDetail: ", "that bai");
+                        }
+                    });
+
                 });
-                listCat.clear();
-                cartAdapter.setCartList(listCat);
-                cartAdapter.notifyDataSetChanged();
                 FragmentActivity activity = requireActivity();
                 if (activity != null) {
                     activity.getSupportFragmentManager().beginTransaction()
                             .replace(R.id.fragment_container, new DinnerTableFragment())
                             .addToBackStack(null)
                             .commit();
-                    // Hiển thị Toast khi chèn thành công
-                    Toast.makeText(getActivity(), "Đã chọn món thành công", Toast.LENGTH_SHORT).show();
-
                 }
             }
         });
-
-
-
-
-
 
     }
 }

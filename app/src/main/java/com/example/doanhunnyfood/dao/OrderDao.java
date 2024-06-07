@@ -15,6 +15,8 @@ import java.util.List;
 public interface OrderDao {
     @Query("SELECT * FROM `order`")
     LiveData<List<Order>> findAll();
+    @Query("SELECT COUNT(*) FROM `order`")
+    LiveData<Integer> getOrderCount();
 
 
     @Query("SELECT o.id AS orderId, t.id AS tableId, f.id AS foodId, f.image AS foodImg, od.qtt AS quantity, f.price AS price , t.name AS tableName, f.name AS foodName, o.status AS statusOrder, od.status AS statusFood, od.TotalFood AS totalFood " +

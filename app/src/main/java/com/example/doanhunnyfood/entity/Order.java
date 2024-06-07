@@ -1,5 +1,9 @@
 package com.example.doanhunnyfood.entity;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
@@ -14,9 +18,9 @@ import androidx.room.PrimaryKey;
                 @ForeignKey(entity = User.class,
                         parentColumns = "id",
                         childColumns = "user_id",
-                        onDelete = ForeignKey.CASCADE)
+                        onDelete = ForeignKey.CASCADE),
         })
-public class Order {
+public class Order implements Parcelable {
     @PrimaryKey(autoGenerate = true)
     public int id;
     @ColumnInfo(name = "table_id")
@@ -29,4 +33,31 @@ public class Order {
     public double total;
     @ColumnInfo(name = "status")
     public int status;
+
+    public static final Creator<Order> CREATOR = new Creator<Order>() {
+        @Override
+        public Order createFromParcel(Parcel source) {
+            return new Order();
+        }
+
+        @Override
+        public Order[] newArray(int size) {
+            return new Order[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeInt(table_id);
+        dest.writeInt(user_id);
+        dest.writeLong(order_time);
+        dest.writeDouble(total);
+        dest.writeInt(status);
+    }
 }
