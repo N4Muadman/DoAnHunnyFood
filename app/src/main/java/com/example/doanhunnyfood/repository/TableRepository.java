@@ -31,6 +31,13 @@ public class TableRepository {
     public void insert(Table table){
         executorService.execute(() -> mTableDao.insert(table));
     }
+    public void delete(Table table){
+        executorService.execute(() -> mTableDao.delete(table));
+    }
+    public void update(Table table){
+        executorService.execute(() -> mTableDao.update(table));
+    }
+
 
 
 }

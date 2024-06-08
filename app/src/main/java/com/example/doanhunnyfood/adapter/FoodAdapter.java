@@ -40,7 +40,6 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.DishViewHolder
             holder.txtName.setText(foodList.get(position).name);
             holder.txtPrice.setText(String.format("%.3f", foodList.get(position).price) + " đồng");
         }else holder.txtName.setText("No Dish");
-
     }
 
     @Override

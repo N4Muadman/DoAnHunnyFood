@@ -19,9 +19,14 @@ import android.widget.Toast;
 
 import com.example.doanhunnyfood.R;
 import com.example.doanhunnyfood.SessionManager.SessionLogin;
+import com.example.doanhunnyfood.adapter.ItemClickListener;
 import com.example.doanhunnyfood.adapter.UserAdapter;
 import com.example.doanhunnyfood.databinding.FragmentUserBinding;
+import com.example.doanhunnyfood.dialog.FoodManagerDialog;
+import com.example.doanhunnyfood.dialog.UserManagerDialog;
+import com.example.doanhunnyfood.entity.Food;
 import com.example.doanhunnyfood.entity.User;
+import com.example.doanhunnyfood.ui.Food.FoodManagerFragment;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
@@ -58,6 +63,15 @@ public class UserFragment extends Fragment {
         binding.recyclerView.setLayoutManager(linearLayoutManager);
         binding.recyclerView.setAdapter(userAdapter);
         sessionLogin = new SessionLogin(getActivity());
+
+        userAdapter.setOnItemClickListener(new ItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                User user = userAdapter.getItem(position);
+                UserManagerDialog dialog = new UserManagerDialog(getActivity(), UserFragment.this ,user);
+                dialog.show();
+            }
+        });
 
         mViewModel.getAllUser().observe(getViewLifecycleOwner(), new Observer<List<User>>() {
             @Override

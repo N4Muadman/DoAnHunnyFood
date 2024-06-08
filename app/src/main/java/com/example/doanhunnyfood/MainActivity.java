@@ -14,6 +14,7 @@ import com.example.doanhunnyfood.SessionManager.SessionLogin;
 import com.example.doanhunnyfood.databinding.ActivityMainBinding;
 import com.example.doanhunnyfood.dialog.FoodManagerDialog;
 import com.example.doanhunnyfood.dialog.UserManagerDialog;
+import com.example.doanhunnyfood.dialog.TableManagerDialog;
 import com.example.doanhunnyfood.entity.Order;
 import com.example.doanhunnyfood.entity.OrderView;
 import com.example.doanhunnyfood.entity.Table;
@@ -27,6 +28,8 @@ import com.example.doanhunnyfood.ui.Food.FoodManagerFragment;
 import com.example.doanhunnyfood.ui.UnpainOrder.UnpaidOrderDetailFragment;
 
 import com.example.doanhunnyfood.ui.gallery.GalleryFragment;
+import com.example.doanhunnyfood.ui.home.HomeFragment;
+import com.example.doanhunnyfood.ui.order.OrderManagerFragment;
 import com.example.doanhunnyfood.ui.user.UserFragment;
 import com.google.android.material.navigation.NavigationView;
 
@@ -69,9 +72,8 @@ public class MainActivity extends AppCompatActivity implements OnTableSelectedLi
         orderListData = orderRepository.getAllOrder();
         orderListData.observe(this, orders -> {
             if (orders != null) {
-                orderList.clear(); // Xóa các phần tử cũ trong danh sách hiện tại
+                orderList.clear();
                 orderList.addAll(orders); // Thêm các phần tử mới vào danh sách
-                // Cập nhật RecyclerView hoặc xử lý logic tương ứng
             }
         });
         setSupportActionBar(binding.appBarMain.toolbar);
@@ -81,8 +83,13 @@ public class MainActivity extends AppCompatActivity implements OnTableSelectedLi
             public void onClick(View view) {
                 List<Fragment> fragments =getSupportFragmentManager().getFragments();
                 Fragment fragment = fragments.get(fragments.size()-1);
-                if(fragment instanceof FoodManagerFragment){
+                if(fragment instanceof FoodManagerFragment ){
                     FoodManagerDialog dialog = new FoodManagerDialog(currentContext,(FoodManagerFragment) fragment);
+                    dialog.show();
+
+                }
+                if (fragment instanceof TableManagerFragment){
+                    TableManagerDialog dialog= new TableManagerDialog(currentContext,(TableManagerFragment) fragment);
                     dialog.show();
                 }
                 if (fragment instanceof UserFragment){
@@ -133,7 +140,7 @@ public class MainActivity extends AppCompatActivity implements OnTableSelectedLi
         });
 
         // Hiển thị nội dung của tab đầu tiên mặc định
-        setTabContent(1);
+        setTabContent(0);
 
 
         // Thiết lập NavigationView để điều hướng các Fragment tùy chỉnh
@@ -141,21 +148,23 @@ public class MainActivity extends AppCompatActivity implements OnTableSelectedLi
             int id = item.getItemId();
             Fragment fragment = null;
             if (id == R.id.nav_home) {
-                fragment = new DinnerTableFragment();
-                binding.appBarMain.toolbar.setTitle("Home");
+                fragment = new HomeFragment();
+                binding.appBarMain.toolbar.setTitle("hunny food");
+            }else if (id == R.id.nav_qlBan) {
+                fragment = new TableManagerFragment(); // Thay thế bằng Fragment của bạn
+                binding.appBarMain.toolbar.setTitle("Quản lý bàn");
             }else if (id == R.id.nav_qlMonAn) {
                     fragment = new FoodManagerFragment(); // Thay thế bằng Fragment của bạn
                     binding.appBarMain.toolbar.setTitle("Quản lý món ăn");
                 }
-            else if (id == R.id.nav_ban){
-                fragment = new TableManagerFragment(); // Thay thế bằng Fragment của bạn
-                binding.appBarMain.toolbar.setTitle("Quản lý món ăn");
-            }
             else if (id == R.id.nav_qlUser) {
                 fragment = new UserFragment(); // Thay thế bằng Fragment của bạn
                 binding.appBarMain.toolbar.setTitle("Quản lý nhân viên");
             }
-
+            else if (id == R.id.nav_qlDonHang){
+                fragment = new OrderManagerFragment();
+                binding.appBarMain.toolbar.setTitle("Quản lý đơn hàng");
+            }
 
             if(id == R.id.nav_logout){
                 sessionLogin.setLogin(false);
@@ -216,10 +225,12 @@ public class MainActivity extends AppCompatActivity implements OnTableSelectedLi
     }
 
     private void setTabContent(int position) {
-        Fragment fragment = new DinnerTableFragment();
+        Fragment fragment = null;
         switch (position) {
             case 0:
-
+                fragment = new HomeFragment();
+                binding.appBarMain.toolbar.setTitle("hunny food");
+                break;
             case 1:
                 fragment = new DinnerTableFragment();
                 binding.appBarMain.toolbar.setTitle("Chọn bàn");
@@ -229,7 +240,7 @@ public class MainActivity extends AppCompatActivity implements OnTableSelectedLi
                 drawer.openDrawer(GravityCompat.END);
                 return;
             default:
-                fragment = new DinnerTableFragment();
+                fragment = new HomeFragment();
                 break;
         }
 

@@ -8,6 +8,7 @@ import androidx.room.Update;
 
 import com.example.doanhunnyfood.entity.Order;
 import com.example.doanhunnyfood.entity.OrderView;
+import com.example.doanhunnyfood.entity.Order_Table_User;
 
 import java.util.List;
 
@@ -25,6 +26,12 @@ public interface OrderDao {
             "INNER JOIN `table` AS t ON o.table_id = t.id " +
             "INNER JOIN food AS f ON od.food_id = f.id")
     LiveData<List<OrderView>> getOrderDetailWithTableAndFood();
+
+    @Query("SELECT o.id, t.name AS tableName, u.fullName AS userName, o.order_time as orderTime, o.status AS status " +
+            "FROM `order` AS o " +
+            "INNER JOIN `table` AS t ON o.table_id = t.id " +
+            "INNER JOIN `user` as u ON o.user_id = u.id")
+    LiveData<List<Order_Table_User>> getOrder_table_user();
 
     @Insert
     long insert(Order order);

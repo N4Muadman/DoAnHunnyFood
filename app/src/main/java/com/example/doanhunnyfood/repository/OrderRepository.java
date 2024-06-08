@@ -8,6 +8,7 @@ import com.example.doanhunnyfood.dao.AppDatabase;
 import com.example.doanhunnyfood.dao.OrderDao;
 import com.example.doanhunnyfood.entity.Order;
 import com.example.doanhunnyfood.entity.OrderView;
+import com.example.doanhunnyfood.entity.Order_Table_User;
 
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -33,6 +34,10 @@ public class OrderRepository {
 
     public LiveData<List<OrderView>> getAllOrderView(){
         return orderDao.getOrderDetailWithTableAndFood();
+    }
+
+    public LiveData<List<Order_Table_User>> getAllOrder_tb_u(){
+        return orderDao.getOrder_table_user();
     }
 
     public void insert(Order order, InsertOrderCallback callback){

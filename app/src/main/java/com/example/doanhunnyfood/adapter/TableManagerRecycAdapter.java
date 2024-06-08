@@ -69,7 +69,6 @@ public class TableManagerRecycAdapter extends RecyclerView.Adapter<TableManagerR
     public static class TableManagerViewHolder extends RecyclerView.ViewHolder{
         public TextView tvTableName, tvStatus;
         public ImageView ivEdit;
-        public int position;
         public CardView cv;
 
         public TableManagerViewHolder(@NonNull View itemView) {
@@ -83,7 +82,7 @@ public class TableManagerRecycAdapter extends RecyclerView.Adapter<TableManagerR
                 @Override
                 public void onClick(View v) {
                     if (itemEditClickListener != null){
-                        itemEditClickListener.onItemClick(position);
+                        itemEditClickListener.onItemClick(getAdapterPosition());
                     }
 
                 }

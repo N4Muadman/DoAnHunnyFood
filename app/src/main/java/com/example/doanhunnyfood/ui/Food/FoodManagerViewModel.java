@@ -28,4 +28,10 @@ public class FoodManagerViewModel extends AndroidViewModel {
     public void insert(Food FoodManager){
         mFoodManagerRepository.insert(FoodManager);
     }
+    public void delete(Food FoodManager){
+        mFoodManagerRepository.delete(FoodManager);
+    }
+    public void update(Food FoodManager){
+        mFoodManagerRepository.update(FoodManager);
+    }
 }

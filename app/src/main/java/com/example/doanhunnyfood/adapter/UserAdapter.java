@@ -4,6 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -17,9 +18,14 @@ import java.util.List;
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder> {
     private List<User> userList;
+    private ItemClickListener itemClickListener;
 
     public UserAdapter(List<User> userList) {
         this.userList = userList;
+    }
+
+    public void setOnItemClickListener(ItemClickListener itemClickListener) {
+        this.itemClickListener = itemClickListener;
     }
 
     @NonNull
@@ -58,15 +64,23 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
     }
 
     public class UserViewHolder extends RecyclerView.ViewHolder {
-        private ImageButton btnEdit, btnDetail;
+        private ImageView btnEdit;
         private TextView txtFullName, txtEmail, txtPhoneNumber;
         public UserViewHolder(@NonNull View itemView) {
             super(itemView);
             btnEdit = itemView.findViewById(R.id.btnEdit);
-            btnDetail = itemView.findViewById(R.id.btnDetail);
             txtEmail = itemView.findViewById(R.id.txtEmail);
             txtPhoneNumber = itemView.findViewById(R.id.txtPhoneNumber);
             txtFullName = itemView.findViewById(R.id.txtFullName);
+
+            btnEdit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (itemClickListener != null){
+                        itemClickListener.onItemClick(getAdapterPosition());
+                    }
+                }
+            });
         }
     }
 }

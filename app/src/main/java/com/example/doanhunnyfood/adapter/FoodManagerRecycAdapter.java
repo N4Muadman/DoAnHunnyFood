@@ -21,9 +21,14 @@ import java.util.List;
 public class FoodManagerRecycAdapter extends RecyclerView.Adapter<FoodManagerRecycAdapter.FoodManagerViewHolder> {
     private LayoutInflater mLayoutInflater;
     private List<Food> mList;
+    public static ItemClickListener itemEditClickListener;
 
     public FoodManagerRecycAdapter(Context context) {
         mLayoutInflater = LayoutInflater.from(context);
+    }
+
+    public  void setOnItemEditClickListener(ItemClickListener itemEditClickListener) {
+        FoodManagerRecycAdapter.itemEditClickListener = itemEditClickListener;
     }
 
     @NonNull
@@ -36,9 +41,14 @@ public class FoodManagerRecycAdapter extends RecyclerView.Adapter<FoodManagerRec
     @Override
     public void onBindViewHolder(@NonNull FoodManagerViewHolder holder, int position) {
         if (mList != null){
-            holder.tvFoodM.setText(mList.get(position).name);
+            holder.tvNameFood.setText(mList.get(position).name);
+            holder.ivFood.setImageResource(mList.get(position).image);
+            holder.tvPrice.setText(String.format("%.3f", mList.get(position).price) + " đồng");
+        } else {
+            holder.tvNameFood.setText("No Food");
+            holder.ivFood.setImageResource(R.drawable.img_coffee); // Thay bằng hình ảnh mặc định nếu không có
+            holder.tvPrice.setText("0.000 đồng");
         }
-
     }
 
     @Override
@@ -48,21 +58,37 @@ public class FoodManagerRecycAdapter extends RecyclerView.Adapter<FoodManagerRec
         return mList.size();
     }
 
+    public Food getItem(int position){
+        if (mList == null || position>= mList.size()){
+            return null;
+        }
+        return mList.get(position);
+    }
     public void setList(List<Food> mList) {
         this.mList = mList;
         notifyDataSetChanged();
     }
 
     public static class FoodManagerViewHolder extends RecyclerView.ViewHolder {
-        public TextView tvFoodM;
-        public ImageView ivView, ivEdit;
+        public TextView tvNameFood, tvPrice;
+        public ImageView  ivEdit,ivFood;
         public CardView cv;
         public FoodManagerViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvFoodM = itemView.findViewById(R.id.tvFoodM);
-            ivView = itemView.findViewById(R.id.ivView);
+            tvNameFood = itemView.findViewById(R.id.tvNameFood);
+            tvPrice = itemView.findViewById(R.id.txtPrice);
             ivEdit = itemView.findViewById(R.id.ivEdit);
+            ivFood = itemView.findViewById(R.id.imgFood);
             cv = (CardView) itemView;
+
+            ivEdit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (itemEditClickListener != null){
+                        itemEditClickListener.onItemClick(getAdapterPosition());
+                    }
+                }
+            });
         }
     }
 }
