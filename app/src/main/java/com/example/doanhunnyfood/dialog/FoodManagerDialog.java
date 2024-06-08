@@ -61,12 +61,17 @@ public class FoodManagerDialog {
                             int image = Integer.parseInt(edtImage.getText().toString());
                             int status = Integer.parseInt(edtStatus.getText().toString());
 
-                            Food food = new Food(name, description, price, image, status);
 
                             if (mEditMode) {
-                                mViewModel.update(food);
+                                food[0].name = name;
+                                food[0].description = description;
+                                food[0].price = price;
+                                food[0].image = image;
+                                food[0].status = status;
+                                mViewModel.update(food[0]);
                                 Toast.makeText(context, "Món ăn được cập nhật", Toast.LENGTH_SHORT).show();
                             } else {
+                                Food food = new Food(name, description, price, image, status);
                                 food.image = R.drawable.img_tea;
                                 mViewModel.insert(food);
                                 Toast.makeText(context, "Món ăn được lưu", Toast.LENGTH_SHORT).show();

@@ -65,6 +65,7 @@ public class UserManagerDialog {
                             user[0].phoneNumber = phoneNumber;
                             user[0].address = address;
                             mViewModel.update(user[0]);
+                            Toast.makeText(context, "nhân viên đã được cập nhật", Toast.LENGTH_SHORT).show();
                         }
                         else {
                             if (userName.isEmpty() || fullName.isEmpty() || Email.isEmpty() || phoneNumber.isEmpty()|| address.isEmpty() ){
@@ -72,6 +73,7 @@ public class UserManagerDialog {
                                 mDialog.dismiss();
                             }else {
                                 User user = new User(userName, passWord, fullName, Email, phoneNumber, address, 1);
+                                Toast.makeText(context, "đã thêm nhân viên mới", Toast.LENGTH_SHORT).show();
                                 mViewModel.insert(user);
                             }
                         }

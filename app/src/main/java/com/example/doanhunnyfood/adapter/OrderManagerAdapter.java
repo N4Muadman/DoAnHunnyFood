@@ -58,9 +58,9 @@ public class OrderManagerAdapter extends RecyclerView.Adapter<OrderManagerAdapte
             if (otuList.get(position).status == 0){
                 holder.txtStatus.setText("Chưa thanh toán");
                 holder.txtStatus.setTextColor(Color.parseColor("#F54749"));
-            }
-            if (otuList.get(position).status == 1){
+            }else if (otuList.get(position).status == 1){
                 holder.txtStatus.setText("Đã thanh toán");
+                holder.txtStatus.setTextColor(Color.parseColor("#FF03DAC5"));
             }
         }
     }
