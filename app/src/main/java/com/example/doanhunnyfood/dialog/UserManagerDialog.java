@@ -57,7 +57,6 @@ public class UserManagerDialog {
                 .setPositiveButton("Lưu", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        String passWord = PasswordUtils.hashPassword("123456");
                         getInformation();
                         if (mEditMode){
                             user[0].fullName = fullName;
@@ -70,8 +69,8 @@ public class UserManagerDialog {
                         else {
                             if (userName.isEmpty() || fullName.isEmpty() || Email.isEmpty() || phoneNumber.isEmpty()|| address.isEmpty() ){
                                 Toast.makeText(context, "Vui lòng nhập đủ các thông tin", Toast.LENGTH_SHORT).show();
-                                mDialog.dismiss();
                             }else {
+                                String passWord = PasswordUtils.hashPassword("123456");
                                 User user = new User(userName, passWord, fullName, Email, phoneNumber, address, 1);
                                 Toast.makeText(context, "đã thêm nhân viên mới", Toast.LENGTH_SHORT).show();
                                 mViewModel.insert(user);

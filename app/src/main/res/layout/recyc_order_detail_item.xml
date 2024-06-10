@@ -23,6 +23,7 @@
         android:layout_marginStart="10dp"
         android:text="ten"
         android:textSize="20sp"
+
         app:layout_constraintStart_toEndOf="@+id/imgFood"
         app:layout_constraintTop_toTopOf="parent" />
     <TextView

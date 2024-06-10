@@ -10,5 +10,6 @@
     <color name="colorTabSelected">#F54749</color>
     <color name="colorTabUnselected">#80869A</color>
     <color name="tab_text_color_selector">#FF000000</color>
+    <color name="splash_screen_background">#F54749</color>
 </resources>
 

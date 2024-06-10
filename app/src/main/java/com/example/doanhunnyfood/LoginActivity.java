@@ -25,7 +25,6 @@ import io.reactivex.rxjava3.core.Single;
 public class LoginActivity extends AppCompatActivity {
     private ActivityLoginBinding loginBinding;
     private SessionLogin sessionLogin;
-
     private ExecutorService executorService;
     private Handler mainHandler;
 
@@ -36,6 +35,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         loginBinding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(loginBinding.getRoot());
+
+        getSupportActionBar().hide();
 
         sessionLogin = new SessionLogin(this);
 
@@ -48,7 +49,6 @@ public class LoginActivity extends AppCompatActivity {
 
         Button btnLogin = loginBinding.btnLogin;
         executorService = Executors.newSingleThreadExecutor();
-        mainHandler = new Handler(Looper.getMainLooper());
         userRepository = new UserRepository(getApplication());
 
         btnLogin.setOnClickListener(v -> {

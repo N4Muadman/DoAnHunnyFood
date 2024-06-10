@@ -64,6 +64,7 @@ public class UserFragment extends Fragment {
         binding.recyclerView.setAdapter(userAdapter);
         sessionLogin = new SessionLogin(getActivity());
 
+
         userAdapter.setOnItemClickListener(new ItemClickListener() {
             @Override
             public void onItemClick(int position) {

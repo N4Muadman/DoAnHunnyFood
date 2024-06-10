@@ -149,7 +149,7 @@ public class MainActivity extends AppCompatActivity implements OnTableSelectedLi
             Fragment fragment = null;
             if (id == R.id.nav_home) {
                 fragment = new HomeFragment();
-                binding.appBarMain.toolbar.setTitle("hunny food");
+                binding.appBarMain.toolbar.setTitle("Trang chủ");
             }else if (id == R.id.nav_qlBan) {
                 fragment = new TableManagerFragment(); // Thay thế bằng Fragment của bạn
                 binding.appBarMain.toolbar.setTitle("Quản lý bàn");
@@ -168,6 +168,7 @@ public class MainActivity extends AppCompatActivity implements OnTableSelectedLi
 
             if(id == R.id.nav_logout){
                 sessionLogin.setLogin(false);
+                sessionLogin.logout();
                 Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                 startActivity(intent);
                 finish();
@@ -229,7 +230,7 @@ public class MainActivity extends AppCompatActivity implements OnTableSelectedLi
         switch (position) {
             case 0:
                 fragment = new HomeFragment();
-                binding.appBarMain.toolbar.setTitle("hunny food");
+                binding.appBarMain.toolbar.setTitle("Trang chủ");
                 break;
             case 1:
                 fragment = new DinnerTableFragment();

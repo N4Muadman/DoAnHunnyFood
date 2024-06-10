@@ -60,16 +60,7 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <TextView
-        android:id="@+id/txtForgotPw"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="20dp"
-        android:gravity="end"
-        android:text="Quên mật khẩu?"
-        android:textColor="@color/colorTabSelected"
-        android:textSize="16sp" />
+
 
     <Button
         android:id="@+id/btnLogin"

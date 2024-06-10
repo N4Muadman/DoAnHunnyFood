@@ -33,7 +33,6 @@ public class UserRepository {
         return userAll;
     }
 
-
     public void login(String username, String password, LoginCallback callback) {
         executorService.execute(() -> {
             User user = userDao.login(username, password);

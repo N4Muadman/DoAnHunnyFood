@@ -23,8 +23,6 @@ public class Table implements Parcelable {
     @ColumnInfo(name = "description")
     public String description;
 
-    @Ignore
-    public boolean hasOrder;
 
     public Table() {
         // Default constructor required for calls to DataSnapshot.getValue(Table.class)

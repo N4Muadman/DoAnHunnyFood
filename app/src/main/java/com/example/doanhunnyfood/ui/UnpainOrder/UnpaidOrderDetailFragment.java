@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.doanhunnyfood.R;
 import com.example.doanhunnyfood.adapter.UnpaidOrderAdapter;
@@ -36,6 +37,8 @@ public class UnpaidOrderDetailFragment extends Fragment {
     private FragmentUnpaidOrderDetailBinding binding;
     private UnpaidOrderAdapter adapter;
     private Order order;
+
+    double total = 0;
 
     public static UnpaidOrderDetailFragment newInstance(Order order) {
         UnpaidOrderDetailFragment fragment = new UnpaidOrderDetailFragment();
@@ -67,7 +70,6 @@ public class UnpaidOrderDetailFragment extends Fragment {
             order = getArguments().getParcelable("Order");
                 // Sử dụng dữ liệu bàn ở đây
                 if (order != null) {
-                    double total = 0;
                     List<OrderView> orderViews1 = new ArrayList<>();
                     for (OrderView od: orderViewList) {
                         if (od.getOrderId() == order.id){
@@ -85,8 +87,10 @@ public class UnpaidOrderDetailFragment extends Fragment {
         adapter = new UnpaidOrderAdapter();
         binding.recyclerView.setAdapter(adapter);
         binding.btnPay.setOnClickListener(v -> {
+            order.total = total;
             order.status = 1;
             mViewModel.update(order);
+            Toast.makeText(getContext(), "thanh toán thành công", Toast.LENGTH_SHORT).show();
             FragmentActivity activity = requireActivity();
             if (activity != null) {
                 activity.getSupportFragmentManager().beginTransaction()

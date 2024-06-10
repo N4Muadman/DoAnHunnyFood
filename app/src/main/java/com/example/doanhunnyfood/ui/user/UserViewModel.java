@@ -19,7 +19,6 @@ public class UserViewModel extends AndroidViewModel {
         super(application);
         userRepository = new UserRepository(application);
         this.mAllUser = userRepository.getUserAll();
-
     }
 
     public LiveData<List<User>> getAllUser() {
@@ -33,6 +32,4 @@ public class UserViewModel extends AndroidViewModel {
     public void update(User user){
         userRepository.update(user);
     }
-
-    // TODO: Implement the ViewModel
 }

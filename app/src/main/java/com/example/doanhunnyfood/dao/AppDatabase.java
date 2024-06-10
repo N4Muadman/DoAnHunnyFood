@@ -69,6 +69,7 @@ public abstract class AppDatabase extends RoomDatabase {
         for (String name : tables) {
             Table table = new Table();
             table.name = name;
+            table.status = 1;
             tableDao.insert(table);
         }
     }

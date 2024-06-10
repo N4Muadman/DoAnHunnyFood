@@ -44,7 +44,6 @@ public class OrderManagerAdapter extends RecyclerView.Adapter<OrderManagerAdapte
     @Override
     public void onBindViewHolder(@NonNull OrderManagerViewHolder holder, int position) {
         if (otuList != null){
-            holder.txtUserName.setText(otuList.get(position).userName);
             holder.txtTableName.setText(otuList.get(position).tableName);
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
                 LocalDateTime orderDateTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(otuList.get(position).orderTime), ZoneId.systemDefault());
@@ -86,11 +85,10 @@ public class OrderManagerAdapter extends RecyclerView.Adapter<OrderManagerAdapte
 
 
     public class OrderManagerViewHolder extends RecyclerView.ViewHolder {
-        private TextView txtTableName, txtUserName, txtOrderTime, txtStatus;
+        private TextView txtTableName, txtOrderTime, txtStatus;
         public OrderManagerViewHolder(@NonNull View itemView) {
             super(itemView);
             txtTableName = itemView.findViewById(R.id.txtNameTable);
-            txtUserName = itemView.findViewById(R.id.txtUserName);
             txtOrderTime = itemView.findViewById(R.id.txtOrderTime);
             txtStatus = itemView.findViewById(R.id.txtStatus);
 

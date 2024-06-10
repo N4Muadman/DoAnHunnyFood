@@ -43,7 +43,7 @@ public class TableManagerRecycAdapter extends RecyclerView.Adapter<TableManagerR
             holder.tvTableName.setText(mList.get(position).name);
 
             // Chuyển đổi giá trị int thành chuỗi trước khi đặt vào TextView
-            String statusText = String.valueOf(mList.get(position).status);
+            String statusText = String.valueOf(mList.get(position).description);
             holder.tvStatus.setText(statusText);
         }
     }
